@@ -39,3 +39,51 @@ async function getKanap() {
     });
 }
 getKanap();
+
+// let addToCartBtn = document.getElementById("addToCart");
+// addToCartBtn.addEventListener("click", addToCart);
+
+// function addToCart() {
+//   let quantityKanap = document.getElementById("quantity").value;
+//   let colorChoice = document.getElementById("colors").value;
+//   let _id = productId;
+
+//   const kanapLocalStorage = {
+//     productId: _id,
+//     qtyKanap: quantityKanap,
+//     clrKanap: colorChoice,
+//   };
+//   window.localStorage.setItem("kanap", JSON.stringify(kanapLocalStorage));
+// }
+
+const button = document.getElementById("addToCart");
+
+if (button != null) {
+  button.addEventListener("click", (e) => {
+    const colorChoice = document.getElementById("colors").value;
+    const quantityKanap = document.getElementById("quantity").value;
+    const _id = productId;
+    let price = document.getElementById("price").textContent;
+    if (
+      colorChoice == null ||
+      colorChoice === "" ||
+      quantityKanap == null ||
+      quantityKanap == 0
+    ) {
+      alert("Choisissez une couleur et une quantité");
+      return;
+    }
+
+    const key = `${_id}-${colorChoice}`;
+    const data = {
+      productId: _id,
+      qtyKanap: Number(quantityKanap),
+      clrKanap: colorChoice,
+      price: Number(price),
+    };
+    localStorage.setItem(key, JSON.stringify(data));
+  });
+}
+
+// si on rajoute un item de la même couleur, alors il s'ajoute et n'ecrase pas l'ancienne valeur
+// limiter a 100
