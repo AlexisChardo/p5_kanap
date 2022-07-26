@@ -1,3 +1,4 @@
+//Recuperation de l'API
 async function getAllProducts() {
   const response = await fetch("http://localhost:3000/api/products");
   if (response.ok) {
@@ -7,12 +8,14 @@ async function getAllProducts() {
   }
 }
 
+//Creation de l'affichage de la page d'accueil
 async function displayProduct() {
   const products = await getAllProducts();
   const section = document.getElementById("items");
   // création d'un fragment, une fausse balise permettant de tout regrouper avant de l'intégré dans le navigateur
   const fragment = document.createDocumentFragment();
 
+  //Affichage pour chaque element
   products.forEach((product) => {
     //lien de l'article
     let myLink = document.createElement("a");
